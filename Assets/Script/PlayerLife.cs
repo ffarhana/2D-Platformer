@@ -46,13 +46,18 @@ public class PlayerLife : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Trap"))
         {
-            TakeDamage();
+            int damageAmount = 1;
+            TakeDamage(damageAmount);
             Debug.Log("Trapped");
 
         }
         else if (collision.gameObject.CompareTag("Box"))
         {
             JumpOnBox(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "Weak Point")
+        {
+            Destroy(collision.gameObject);
         }
 
     }
@@ -86,7 +91,7 @@ public class PlayerLife : MonoBehaviour
 
     //box jump end
 
-    private void TakeDamage()
+    public void TakeDamage(int damageAmount)
     {
         currentHealth--; // Decrease the player's current health
         Debug.Log("Player Health: " + currentHealth);
