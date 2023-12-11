@@ -9,6 +9,8 @@ TagManager:
   - Trap
   - HealthItem
   - Box
+  - Monster
+  - Weak Point
   layers:
   - Default
   - TransparentFX
