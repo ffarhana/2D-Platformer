@@ -4,67 +4,38 @@ using UnityEngine;
 
 public class MonsterMovement : MonoBehaviour
 {
-    public GameObject pointA;
-    public GameObject pointB;
-    private Rigidbody2D rb;
-    private CompositeCollider2D compositeCollider;
+    [SerializeField] float moveSpeed = 1f;
 
-    private Animator anim;
-    private Transform currentPoint;
-    public float speed;
-
+    Rigidbody2D myRigidbody;
+    
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        currentPoint = pointB.transform;
-        anim.SetBool("isFlying", true);
-
-        compositeCollider = GetComponent<CompositeCollider2D>();
+        myRigidbody = GetComponent<Rigidbody2D>();
+        
     }
 
     void Update()
     {
-        Vector2 point = currentPoint.position - transform.position;
-        if(currentPoint == pointB.transform)
+        if(IsFacingRight())
         {
-            rb.velocity = new Vector2(speed, 0);
-        }
-        else
+            myRigidbody.velocity = new Vector2(moveSpeed, 0f);
+        }else
         {
-            rb.velocity = new Vector2(-speed, 0);
+            myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
         }
-
-        if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB.transform)
-        {
-            currentPoint = pointA.transform;
-        }
-
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA.transform)
-        {
-            currentPoint = pointB.transform;
-        }
+       
     }
 
-    private void flip()
+    private bool IsFacingRight()
     {
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1;
-        transform.localScale = localScale;
+        return transform.localScale.x > Mathf.Epsilon;
     }
 
-
-    private void OnDrawGizmos()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        Bounds bounds = compositeCollider.bounds;
-
-        Gizmos.DrawWireCube(bounds.center, bounds.size);
-
-
-        //Gizmos.DrawWireSphere(pointA.transform.position, 0.5f);
-        //Gizmos.DrawWireSphere(pointB.transform.position, 0.5f);
-        //Gizmos.DrawLine(pointA.transform.position, pointB.transform.position);
-
+        transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody.velocity.x)), transform.localScale.y);
     }
+
+
 }

@@ -30,19 +30,23 @@ public class PlayerMovement : MonoBehaviour
         Vector2 move = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
         rb.velocity = move;
 
-        if (horizontalInput != 0f)
+        if (horizontalInput > 0f)
         {
             anim.SetBool("running", true);
             sprite.flipX = false;
+            Debug.Log("Moving right");
+
         }
         else if (horizontalInput < 0f)
         {
             anim.SetBool("running", true);
             sprite.flipX = true;
+            Debug.Log("Moving left");
         }
         else
         {
             anim.SetBool("running", false);
+            Debug.Log("Not moving horizontally");
         }
 
             // Jump if the player is grounded and the jump button (e.g., space) is pressed
