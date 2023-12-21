@@ -19,9 +19,9 @@ public class ItemCollector : MonoBehaviour
             collectSoundEffect.Play();
             Destroy(collision.gameObject);
 
-            _Playerlifescript.collectibles++;
+            PlayerLife.collectibles++;
             //UpdatecollectiblesText();
-            _Playerlifescript.collectiblesText.text = "Collectibles : " + _Playerlifescript.collectibles;
+            _Playerlifescript.collectiblesText.text = "Collectibles : " + PlayerLife.collectibles;
         }
 
         if (collision.gameObject.CompareTag("HealthItem"))
@@ -30,9 +30,9 @@ public class ItemCollector : MonoBehaviour
             Destroy(collision.gameObject);
 
             // Increment currentHealth, but ensure it doesn't exceed 10
-            _Playerlifescript.currentHealth = Mathf.Min(_Playerlifescript.currentHealth + 1, 10);
+            PlayerLife.currentHealth = Mathf.Min(PlayerLife.currentHealth + 1, 10);
 
-            _Playerlifescript.healthText.text = "Health : " + _Playerlifescript.currentHealth;
+            _Playerlifescript.healthText.text = "Health : " + PlayerLife.currentHealth;
         }
 
 

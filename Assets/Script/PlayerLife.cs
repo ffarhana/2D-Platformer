@@ -12,7 +12,7 @@ public class PlayerLife : MonoBehaviour
 
     [SerializeField] public Text healthText; // Reference to a UI text component for displaying health
     public int maxHealth = 100;
-    public int currentHealth;
+    public static int currentHealth;
 
     public float bounceForce = 5f; // Adjust the force as needed
 
@@ -21,9 +21,9 @@ public class PlayerLife : MonoBehaviour
     private int jumpsRemaining = 3;
 
     [SerializeField] public Text collectiblesText;
-    public int collectibles = 0;
+    public static int collectibles = 0;
 
-
+    public SaveSystem _SaveSystem;
 
     [SerializeField] private AudioSource takeDamageSoundEffect;
     [SerializeField] private AudioSource collectSoundEffect;
@@ -33,12 +33,22 @@ public class PlayerLife : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _SaveSystem.LoadPlayerData();
+
+        // Display loaded data (for testing purposes)
+        Debug.Log("Loaded Collectibles: " + collectibles);
+        Debug.Log("Loaded Health: " + currentHealth);
+
+        _SaveSystem.SavePlayerData();
+
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        currentHealth = maxHealth; // Set the initial current health to the maximum health value
+        //maxHealth = currentHealth; // Set the initial current health to the maximum health value
 
         UpdateHealthText();
         UpdatecollectiblesText();
+
+
     }
 
     // Update is called once per frame

@@ -5,22 +5,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]public float moveSpeed = 5f;
     [SerializeField] public float jumpForce = 10f;
 
-    [SerializeField] public Rigidbody2D rb;
+/*    [SerializeField] */public Rigidbody2D rb;
     
     public bool isJumping;
 
+    [SerializeField]
     private Animator anim;
 
-    private SpriteRenderer sprite;
+    public SpriteRenderer sprite;
 
     [SerializeField] private AudioSource jumpSoundEffect;
 
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        sprite = GetComponent<SpriteRenderer>();
+    //    rb = GetComponent<Rigidbody2D>();
+    //    anim = GetComponent<Animator>();
+    //    sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()

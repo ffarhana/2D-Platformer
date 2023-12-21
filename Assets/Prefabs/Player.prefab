@@ -191,6 +191,8 @@ MonoBehaviour:
   jumpForce: 7
   rb: {fileID: 8894982053185557995}
   isJumping: 0
+  anim: {fileID: 1988308261525066136}
+  sprite: {fileID: 3941523839424362955}
   jumpSoundEffect: {fileID: 3811150107534126181}
 --- !u!95 &1988308261525066136
 Animator:
@@ -243,11 +245,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 0}
   maxHealth: 10
-  currentHealth: 0
   bounceForce: 10
   collectiblePrefab: {fileID: 2501545610284227635, guid: 9a3edddee1c3d1c4ba85e49d8b090857, type: 3}
   collectiblesText: {fileID: 0}
-  collectibles: 1
+  _SaveSystem: {fileID: 0}
   takeDamageSoundEffect: {fileID: 2649925525480698542}
   collectSoundEffect: {fileID: 9113191395763889669}
   deathSoundEffect: {fileID: 4686526243454815945}

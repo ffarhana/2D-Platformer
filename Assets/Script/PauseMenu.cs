@@ -9,6 +9,26 @@ public class PauseMenu : MonoBehaviour
     public static bool isPaused;
     public GameObject saveMenu;
 
+    public SaveSystem _SaveSystem;
+    //gamemanager punya savecode start
+    public static PauseMenu instance;
+
+
+    private void Awake()
+    {
+        //// Ensure only one instance of GameManager exists
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
+    }
+    //end
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,9 +74,12 @@ public class PauseMenu : MonoBehaviour
 
     public void SaveGame()
     {
+        _SaveSystem.SavePlayerData();
+
         pauseMenu.SetActive(false); // Deactivate pause menu
-        saveMenu.SetActive(true);   // Activate Save menu
     }
+
+
 
     public void BackToPauseMenu()
     {
@@ -64,5 +87,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);  // Activate pause menu
     }
 
+
     public void QuitGame() => Application.Quit();
 }
+                  

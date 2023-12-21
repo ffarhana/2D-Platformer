@@ -5,21 +5,24 @@ using TMPro;
 
 public class SaveSystem : MonoBehaviour
 {
-    public TMP_InputField inputField;
-    public void SaveData()
-    {
-        PlayerPrefs.SetString("Input", inputField.text);
+    public const string CollectiblesKey = "PlayerCollectibles";
+    public const string HealthKey = "PlayerHealth";
 
+    // Save player data to PlayerPrefs
+    public void SavePlayerData()
+    {
+        PlayerPrefs.SetInt(CollectiblesKey, PlayerLife.collectibles);
+        PlayerPrefs.SetInt(HealthKey, PlayerLife.currentHealth);
+        PlayerPrefs.Save();
     }
 
-    public void LoadData()
+    // Load player data from PlayerPrefs
+    public void LoadPlayerData()
     {
-        inputField.text = PlayerPrefs.GetString("Input");
-    }
-
-    public void DeleteData()
-    {
-        PlayerPrefs.DeleteKey("Input");
-        PlayerPrefs.DeleteAll();
+        // If the keys exist, load the saved values; otherwise, use default values (0 collectibles, 100 health)
+        PlayerLife.collectibles = PlayerPrefs.GetInt(CollectiblesKey, 0);
+        PlayerLife.currentHealth = PlayerPrefs.GetInt(HealthKey, 100);
     }
 }
+
+
