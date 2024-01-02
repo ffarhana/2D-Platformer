@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
+  saveMenu: {fileID: 0}
+  _SaveSystem: {fileID: 0}
