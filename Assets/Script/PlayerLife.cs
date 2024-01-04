@@ -29,6 +29,8 @@ public class PlayerLife : MonoBehaviour
     [SerializeField] private AudioSource collectSoundEffect;
     [SerializeField] private AudioSource deathSoundEffect;
 
+    public static int CurrentHealth { get => currentHealth; set => currentHealth = value; }
+
 
     // Start is called before the first frame update
     void Start()
